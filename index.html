@@ -202,8 +202,9 @@
     <script src="Static/js/jszip.min.js"></script>
 
     <script>
-        var avatarList = [];
-        var signatureList = [];
+        //var avatarList = [];
+        //var signatureList = [];
+        var downloadList = [];
 
         $(function() {
             $("#btnGenerate").click(function(event){
@@ -248,9 +249,9 @@
             var yOffset = y - (y/6);
             //var maxWidth = x - (x/8);
             var maxWidth = x - (x*0.05);
-            drawScreen(context, x, y, bgImgUrl, 0, yOffset, fontSize, maxWidth);
+            drawScreen(canvas, context, x, y, bgImgUrl, 0, yOffset, fontSize, maxWidth);
 
-            avatarList.push({ 'id': id, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
+            //avatarList.push({ 'id': id, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
         }
 
         function renderSignature(id, bgImgUrl, xOffset, yOffset, fontSize){
@@ -264,16 +265,20 @@
             var y = canvas.height;
             var maxWidth = (canvas.width/2) - (canvas.width*0.05);
 
-            drawScreen(context, x, y, bgImgUrl, xOffset, yOffset, fontSize, maxWidth);
+            drawScreen(canvas, context, x, y, bgImgUrl, xOffset, yOffset, fontSize, maxWidth);
 
-            signatureList.push({ 'id': id, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
+            //signatureList.push({ 'id': id, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
         }
 
-        function drawScreen(context, x, y, bgImgUrl, xOffset, yOffset, fontSize, maxWidth) {
+        function drawScreen(canvas, context, x, y, bgImgUrl, xOffset, yOffset, fontSize, maxWidth) {
             var backgroundImage = new Image();
+            //backgroundImage.setAttribute('crossOrigin', 'anonymous');
+            //backgroundImage.crossOrigin = 'Anonymous';
             backgroundImage.onload = function(){
                 context.drawImage(backgroundImage, 0, 0);
+                //downloadList.push({ 'src': bgImgUrl, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
                 drawText(context, x, y, xOffset, yOffset, fontSize, maxWidth);
+                context.restore();
             };
             backgroundImage.src = bgImgUrl;
         }
@@ -313,14 +318,20 @@
         function download(){
             var zip = new JSZip();
 
+            var canvas512 = document.getElementById('canvas512').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+            var canvas256 = document.getElementById('canvas512').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+            var canvas128 = document.getElementById('canvas512').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+            var canvasSig1 = document.getElementById('canvas512').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+            var canvasSig2 = document.getElementById('canvas512').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+
             var dirAvatars = zip.folder("avatars");
-            dirAvatars.add("128.png", avatarList[0].data, {base64: true});
-            dirAvatars.add("256.png", avatarList[1].data, {base64: true});
-            dirAvatars.add("512.png", avatarList[2].data, {base64: true});
+            dirAvatars.add("128.png", canvas512, {base64: true});
+            dirAvatars.add("256.png", canvas256, {base64: true});
+            dirAvatars.add("512.png", canvas128, {base64: true});
 
             var dirSignatures = zip.folder("signatures");
-            dirSignatures.add("sig1.png", signatureList[0].data, {base64: true});
-            dirSignatures.add("sig2.png", signatureList[1].data, {base64: true});
+            dirSignatures.add("sig1.png", canvasSig1, {base64: true});
+            dirSignatures.add("sig2.png", canvasSig2, {base64: true});
 
             var content = zip.generate();
             location.href="data:application/zip;base64,"+content;
