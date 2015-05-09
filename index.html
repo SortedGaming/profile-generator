@@ -273,7 +273,7 @@
         function drawScreen(canvas, context, x, y, bgImgUrl, xOffset, yOffset, fontSize, maxWidth) {
             var backgroundImage = new Image();
             //backgroundImage.setAttribute('crossOrigin', 'anonymous');
-            //backgroundImage.crossOrigin = 'Anonymous';
+            backgroundImage.crossOrigin = 'Anonymous';
             backgroundImage.onload = function(){
                 context.drawImage(backgroundImage, 0, 0);
                 //downloadList.push({ 'src': bgImgUrl, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
