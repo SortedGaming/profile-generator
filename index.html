@@ -81,30 +81,48 @@
                 <p>
                     <input type="text" id="txtUsername" placeholder="Enter username" class="form-control" />
                 </p>
-                <p>
-                    <a class="btn btn-default btn-lg" id="btnGenerate" href="#">Generate &raquo;</a>
-                </p>
-                <div id="avatar-container" class="row">
-                    <div class="col-sm-6">
-                        <canvas id="canvas512" height="512" width="512"></canvas>
+                <div class="row hide">
+                    <div class="col-sm-4">
+                        <input type="text" id="txtXOffset" placeholder="Enter x offset" class="form-control" value="400" />
                     </div>
                     <div class="col-sm-4">
-                       <canvas id="canvas256" height="256" width="256"></canvas>
+                        <input type="text" id="txtYOffset" placeholder="Enter y offset" class="form-control" value="128" />
                     </div>
-                    <div class="col-sm-2">
-                        <canvas id="canvas128" height="128" width="128"></canvas>
+                    <div class="col-sm-4">
+                        <input type="text" id="txtFontSize" placeholder="Enter font size" class="form-control" value="18" />
                     </div>
                 </div>
-                <hr/>
+                <p>
+                    <a class="btn btn-default btn-lg" id="btnGenerate" href="#">Generate &raquo;</a>
+                    <a class="btn btn-default btn-lg" id="btnDownload" href="#">Download &raquo;</a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <canvas id="canvas512" height="512" width="512"></canvas>
+            </div>
+            <div class="col-sm-4">
+               <canvas id="canvas256" height="256" width="256"></canvas>
+            </div>
+            <div class="col-sm-2">
+                <canvas id="canvas128" height="128" width="128"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
                 <div id="signature-container" class="row">
                     <div class="col-sm-12">
-                        <canvas id="canvasSig" height="165" width="800"></canvas>
+                        <canvas id="canvasSig1" height="128" width="600"></canvas>
+                    </div>
+                </div>
+                <div id="signature-container" class="row">
+                    <div class="col-sm-12">
+                        <canvas id="canvasSig2" height="165" width="800"></canvas>
                     </div>
                 </div>
             </div>
         </div>
-
-        <hr/>
 
 <!--
         <div class="row">
@@ -180,54 +198,132 @@
     <!--<script src="Static/js/bootstrap.min.js"></script>-->
     <script src="Static/js/bootstrap.min.js"></script>
 
+    <!-- JSZip -->
+    <script src="Static/js/jszip.min.js"></script>
+
     <script>
         $(function() {
             $("#btnGenerate").click(function(event){
 
                 event.preventDefault();
 
-                RenderAvatar("canvas512", "Static/img/Avatar_512_bg_dark.png", 'top', 'center', 35, 45);
-                RenderAvatar("canvas256", "Static/img/Avatar_256_bg_dark.png", 'top', 'center', 17, 22);
-                RenderAvatar("canvas128", "Static/img/Avatar_128_bg_dark.png", 'top', 'center', 8, 11);
-                //RenderAvatar("canvas64", "Static/img/Avatar_64_bg_dark.png", 'top', 'center', 4, 5);
+                renderAvatar("canvas512", "Static/img/Avatar_512_bg_dark_square.png", 45);
+                renderAvatar("canvas256", "Static/img/Avatar_256_bg_dark_square.png", 22);
+                renderAvatar("canvas128", "Static/img/Avatar_128_bg_dark_square.png", 11);
+                //renderAvatar("canvas64", "Static/img/Avatar_64_bg_dark_square.png", 4, 5);
 
-                RenderSignature("canvasSig", "Static/img/Signature_800x165_bg_dark.png", 'top', 'center', 128, 18);
+                renderSignature("canvasSig1", "Static/img/Signature_600x128_bg_black.png", 320, 74, 22);
+                renderSignature("canvasSig2", "Static/img/Signature_800x165_bg_black.png", 400, 128, 18);
+            });
+
+            $("#txtUsername, #txtXOffset, #txtYOffset, #txtFontSize").keyup(function(event){
+                event.preventDefault();
+
+                var xOffset = $("#txtXOffset").val()*1;
+                var yOffset = $("#txtYOffset").val()*1;
+                var fontSize = $("#txtFontSize").val()*1;
+
+                renderAvatar("canvas512", "Static/img/Avatar_512_bg_dark_square.png", 45);
+                renderAvatar("canvas256", "Static/img/Avatar_256_bg_dark_square.png", 22);
+                renderAvatar("canvas128", "Static/img/Avatar_128_bg_dark_square.png", 11);
+
+                renderSignature("canvasSig1", "Static/img/Signature_600x128_bg_black.png", 320, 74, 22);
+                renderSignature("canvasSig2", "Static/img/Signature_800x165_bg_black.png", 400, 128, 18);
+            });
+
+            $("#btnDownload").click(function(event) {
+                event.preventDefault();
+                download();
             });
         });
 
-        function RenderAvatar(id, bgImgUrl, baseline, align, offstet, fontSize){
+        function renderAvatar(id, bgImgUrl, fontSize){
             var canvas = document.getElementById(id);
             var context = canvas.getContext("2d");
-            var x = canvas.width / 2;
-            var y = canvas.height / 2;
-            DrawScreen(context, x, y, bgImgUrl, baseline, align, offstet, fontSize);
+            var x = canvas.width;
+            var y = canvas.height;
+            var yOffset = y - (y/6);
+            //var maxWidth = x - (x/8);
+            var maxWidth = x - (x*0.05);
+            drawScreen(context, x, y, bgImgUrl, 0, yOffset, fontSize, maxWidth);
         }
 
-        function RenderSignature(id, bgImgUrl, baseline, align, offstet, fontSize){
+        function renderSignature(id, bgImgUrl, xOffset, yOffset, fontSize){
             var canvas = document.getElementById(id);
             var context = canvas.getContext("2d");
-            var x = canvas.width / 2 + 200;
-            var y = canvas.height / 2;
-            DrawScreen(context, x, y, bgImgUrl, baseline, align, offstet, fontSize);
+
+            var text = $("#txtUsername").val();
+            var textMetrics = context.measureText(text);
+
+            var x = canvas.width + (xOffset);
+            var y = canvas.height;
+            var maxWidth = (canvas.width/2) - (canvas.width*0.05);
+
+            drawScreen(context, x, y, bgImgUrl, xOffset, yOffset, fontSize, maxWidth);
         }
 
-        function DrawScreen(context, x, y, bgImgUrl, baseline, align, offstet, fontSize) {
+        function drawScreen(context, x, y, bgImgUrl, xOffset, yOffset, fontSize, maxWidth) {
             var backgroundImage = new Image();
             backgroundImage.onload = function(){
                 context.drawImage(backgroundImage, 0, 0);
-                DrawText(context, x, y, baseline, align, offstet, fontSize);
+                drawText(context, x, y, xOffset, yOffset, fontSize, maxWidth);
             };
             backgroundImage.src = bgImgUrl;
-
         }
 
-        function DrawText(context, x, y, baseline, align, offstet, fontSize) {
-            var username = $("#txtUsername").val();
-            context.fillStyle = "#980000";
+        function drawText(context, x, y, xOffset, yOffset, fontSize, maxWidth) {
+            // text properties
+            var text = $("#txtUsername").val();
+            var textMetrics = context.measureText(text);
+
+            var fontOffset = yOffset + (fontSize*1.3);
+
+            // gradient properties
+            var gradient = context.createLinearGradient(0, yOffset, 0, fontOffset);
+
+            // gradient settings
+            gradient.addColorStop("0","#5C0000"); //#5C0000
+            gradient.addColorStop("0.5","#980000"); //#980000
+            gradient.addColorStop("1.0","#5C0000"); //#5C0000
+
+            //context.globalCompositeOperation='source-atop';
+
+            // Fill with gradient
+            context.fillStyle = gradient;
+            //context.fillStyle = "#980000";
+            // end gradient
+
+            // font settings
             context.font = fontSize + "px Good Times";
-            context.textBaseline = baseline;
-            context.textAlign = align;
-            context.fillText(username, x, offstet);
+            context.textBaseline = 'top';
+            context.textAlign = 'center';
+
+            //var xPosition = (x/2) - (textMetrics.width/2);
+
+            context.fillText(text, x/2, yOffset, maxWidth);
+        }
+
+        function download(){
+            var zip = new JSZip();
+
+            var dirAvatars = zip.folder("avatars");
+            dirAvatars.add("128.png", getBase64Image("canvas128"), {base64: true});
+            dirAvatars.add("256.png", getBase64Image("canvas256"), {base64: true});
+            dirAvatars.add("512.png", getBase64Image("canvas512"), {base64: true});
+
+            var dirSignatures = zip.folder("signatures");
+            dirSignatures.add("sig1.png", getBase64Image("canvasSig1"), {base64: true});
+            dirSignatures.add("sig2.png", getBase64Image("canvasSig2"), {base64: true});
+
+            var content = zip.generate();
+            location.href="data:application/zip;base64,"+content;
+        }
+
+        function getBase64Image(canvasId) {
+            var canvas = document.getElementById(canvasId);
+
+            var dataURL = canvas.toDataURL("image/png");
+            return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
         }
     </script>
 
