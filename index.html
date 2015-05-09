@@ -319,21 +319,21 @@
             var zip = new JSZip();
 
             var canvas512 = document.getElementById('canvas512').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
-            var canvas256 = document.getElementById('canvas512').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
-            var canvas128 = document.getElementById('canvas512').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
-            var canvasSig1 = document.getElementById('canvas512').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
-            var canvasSig2 = document.getElementById('canvas512').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+            var canvas256 = document.getElementById('canvas256').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+            var canvas128 = document.getElementById('canvas128').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+            var canvasSig1 = document.getElementById('canvasSig1').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+            var canvasSig2 = document.getElementById('canvasSig2').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
 
             var dirAvatars = zip.folder("avatars");
-            dirAvatars.add("128.png", canvas512, {base64: true});
-            dirAvatars.add("256.png", canvas256, {base64: true});
-            dirAvatars.add("512.png", canvas128, {base64: true});
+            dirAvatars.file("128.png", canvas512, {base64: true});
+            dirAvatars.file("256.png", canvas256, {base64: true});
+            dirAvatars.file("512.png", canvas128, {base64: true});
 
             var dirSignatures = zip.folder("signatures");
-            dirSignatures.add("sig1.png", canvasSig1, {base64: true});
-            dirSignatures.add("sig2.png", canvasSig2, {base64: true});
+            dirSignatures.file("sig1.png", canvasSig1, {base64: true});
+            dirSignatures.file("sig2.png", canvasSig2, {base64: true});
 
-            var content = zip.generate();
+            var content = zip.generate({type:"base64"});
             location.href="data:application/zip;base64,"+content;
         }
     </script>
