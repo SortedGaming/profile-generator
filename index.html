@@ -333,8 +333,11 @@
             dirSignatures.file("sig1.png", canvasSig1, {base64: true});
             dirSignatures.file("sig2.png", canvasSig2, {base64: true});
 
-            var content = zip.generate({type:"base64"});
-            location.href="data:application/zip;base64,"+content;
+            //var content = zip.generate({type:"base64"});
+            //location.href="data:application/zip;base64,"+content;
+
+            var content = zip.generate({type:"blob"});
+            saveAs(content, "Sorted_Profile_Images.zip");
         }
     </script>
 
