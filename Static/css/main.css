@@ -25,6 +25,16 @@ body {
 
 /* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
 
+h1,
+h2,
+h3 {
+    font-family: 'Good Times';
+}
+
+h3 {
+    font-size: 13px;
+}
+
 .business-header {
     height: 400px;
     background: url('../img/Banner_1920x400_01.png') center center no-repeat scroll;
