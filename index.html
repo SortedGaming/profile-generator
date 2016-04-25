@@ -78,6 +78,8 @@
         <div class="row">
             <div class="col-sm-12">
                 <h2 style="font-family: 'Good Times';">Generator</h2>
+                <br />
+                <span style="font-size: 13px">Fill in your information and click download for your convenience</span>
                 <p>
                     <input type="text" id="txtUsername" placeholder="Enter username" class="form-control" />
                 </p>
@@ -93,8 +95,9 @@
                     </div>
                 </div>
                 <p>
-                    <a class="btn btn-default btn-lg" id="btnGenerate" href="#">Generate &raquo;</a>
-                    <a class="btn btn-default btn-lg" id="btnDownload" href="#">Download &raquo;</a>
+                    <!-- <a class="btn btn-default btn-lg" id="btnGenerate" href="#">Generate &raquo;</a> -->
+                    <!-- <a class="btn btn-default btn-lg" id="btnDownload" href="#">Download &raquo;</a> -->
+                    <a class="btn btn-default btn-lg" id="btnDownload" href="Sorted_Profile_Images.zip">Download »</a>
                 </p>
             </div>
         </div>
@@ -202,8 +205,8 @@
     <script src="Static/js/jszip.min.js"></script>
 
     <script>
-        //var avatarList = [];
-        //var signatureList = [];
+        var avatarList = [];
+        var signatureList = [];
         var downloadList = [];
 
         $(function() {
@@ -214,7 +217,7 @@
                 renderAvatar("canvas512", "Static/img/Avatar_512_bg_dark_square.png", 45);
                 renderAvatar("canvas256", "Static/img/Avatar_256_bg_dark_square.png", 22);
                 renderAvatar("canvas128", "Static/img/Avatar_128_bg_dark_square.png", 11);
-                //renderAvatar("canvas64", "Static/img/Avatar_64_bg_dark_square.png", 4, 5);
+                renderAvatar("canvas64", "Static/img/Avatar_64_bg_dark_square.png", 4, 5);
 
                 renderSignature("canvasSig1", "Static/img/Signature_600x128_bg_black.png", 320, 74, 22);
                 renderSignature("canvasSig2", "Static/img/Signature_800x165_bg_black.png", 400, 128, 18);
@@ -251,7 +254,7 @@
             var maxWidth = x - (x*0.05);
             drawScreen(canvas, context, x, y, bgImgUrl, 0, yOffset, fontSize, maxWidth);
 
-            //avatarList.push({ 'id': id, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
+            avatarList.push({ 'id': id, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
         }
 
         function renderSignature(id, bgImgUrl, xOffset, yOffset, fontSize){
@@ -267,7 +270,7 @@
 
             drawScreen(canvas, context, x, y, bgImgUrl, xOffset, yOffset, fontSize, maxWidth);
 
-            //signatureList.push({ 'id': id, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
+            signatureList.push({ 'id': id, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
         }
 
         function drawScreen(canvas, context, x, y, bgImgUrl, xOffset, yOffset, fontSize, maxWidth) {
@@ -276,7 +279,7 @@
             backgroundImage.crossOrigin = 'Anonymous';
             backgroundImage.onload = function(){
                 context.drawImage(backgroundImage, 0, 0);
-                //downloadList.push({ 'src': bgImgUrl, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
+                downloadList.push({ 'src': bgImgUrl, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
                 drawText(context, x, y, xOffset, yOffset, fontSize, maxWidth);
                 context.restore();
             };
@@ -333,8 +336,8 @@
             dirSignatures.file("sig1.png", canvasSig1, {base64: true});
             dirSignatures.file("sig2.png", canvasSig2, {base64: true});
 
-            //var content = zip.generate({type:"base64"});
-            //location.href="data:application/zip;base64,"+content;
+            var content = zip.generate({type:"base64"});
+            location.href="data:application/zip;base64,"+content;
 
             var content = zip.generate({type:"blob"});
             saveAs(content, "Sorted_Profile_Images.zip");
