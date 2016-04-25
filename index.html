@@ -253,7 +253,7 @@ $(function() {
     $("#btnGenerateLink").click(function(event){
         var username = $("#txtUsername").val();
         if (username) {
-            $("#txtShareLink").val(window.location.protocol + "//" + window.location.hostname + "/" + '?ign=' + encodeURIComponent(username));
+            $("#txtShareLink").val(window.location.protocol + "//" + window.location.hostname + window.location.pathname + '?ign=' + encodeURIComponent(username));
         }
     });
 
