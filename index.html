@@ -20,8 +20,8 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 </head>
@@ -29,342 +29,363 @@
 <body>
 
     <!-- Navigation -->
-<!--
+    <!--
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Sorted Gaming</a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div class="container">
+    <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="#">Sorted Gaming</a>
+</div>
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<ul class="nav navbar-nav">
+<li>
+<a href="#">About</a>
+</li>
+<li>
+<a href="#">Services</a>
+</li>
+<li>
+<a href="#">Contact</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
 -->
 
-    <!-- Image Background Page Header -->
-    <!-- Note: The background image is set within the business-casual.css file. -->
-    <header class="business-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="tagline"></h1>
-                </div>
+<!-- Image Background Page Header -->
+<!-- Note: The background image is set within the business-casual.css file. -->
+<header class="business-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="tagline"></h1>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Page Content -->
-    <div class="container">
+<!-- Page Content -->
+<div class="container">
 
-        <hr>
+    <hr>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <h2>Generator</h2>
-                <h3>Fill in your information and click download for your convenience</h3>
-                <p>
-                    <input type="text" id="txtUsername" placeholder="Enter username" class="form-control" />
-                </p>
-                <div class="row hide">
-                    <div class="col-sm-4">
-                        <input type="text" id="txtXOffset" placeholder="Enter x offset" class="form-control" value="400" />
-                    </div>
-                    <div class="col-sm-4">
-                        <input type="text" id="txtYOffset" placeholder="Enter y offset" class="form-control" value="128" />
-                    </div>
-                    <div class="col-sm-4">
-                        <input type="text" id="txtFontSize" placeholder="Enter font size" class="form-control" value="18" />
-                    </div>
+    <div class="row" style="margin-bottom: 40px;">
+        <div class="col-sm-12">
+            <h2>Generator</h2>
+            <h3>Fill in your information and click download for your convenience</h3>
+            <p>
+                <input type="text" id="txtUsername" placeholder="Enter username" class="form-control input-lg" />
+            </p>
+            <div class="row hide">
+                <div class="col-sm-4">
+                    <input type="text" id="txtXOffset" placeholder="Enter x offset" class="form-control input-lg" value="400" />
                 </div>
-                <p>
+                <div class="col-sm-4">
+                    <input type="text" id="txtYOffset" placeholder="Enter y offset" class="form-control input-lg" value="128" />
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" id="txtFontSize" placeholder="Enter font size" class="form-control input-lg" value="18" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
                     <!-- <a class="btn btn-default btn-lg" id="btnGenerate" href="#">Generate &raquo;</a> -->
                     <!-- <a class="btn btn-default btn-lg" id="btnDownload" href="#">Download &raquo;</a> -->
                     <a class="btn btn-default btn-lg" id="btnDownload" href="Sorted_Profile_Images.zip">Download »</a>
-                </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <canvas id="canvas512" height="512" width="512"></canvas>
-            </div>
-            <div class="col-sm-4">
-               <canvas id="canvas256" height="256" width="256"></canvas>
-            </div>
-            <div class="col-sm-2">
-                <canvas id="canvas128" height="128" width="128"></canvas>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="signature-container" class="row">
-                    <div class="col-sm-12">
-                        <canvas id="canvasSig1" height="128" width="600"></canvas>
-                    </div>
                 </div>
-                <div id="signature-container" class="row">
-                    <div class="col-sm-12">
-                        <canvas id="canvasSig2" height="165" width="800"></canvas>
-                    </div>
+                <div class="col-md-10">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-btn">
+                            <a id="btnGenerateLink" class="btn btn-default" type="button">Get link</a>
+                        </span>
+                        <input id="txtShareLink" type="text" class="form-control" placeholder="">
+                    </div><!-- /input-group -->
                 </div>
             </div>
         </div>
-
-<!--
-        <div class="row">
-            <div class="col-sm-8">
-                <h2>What We Do</h2>
-                <p>Introduce the visitor to the business using clear, informative text. Use well-targeted keywords within your sentences to make sure search engines can find the business.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et molestiae similique eligendi reiciendis sunt distinctio odit? Quia, neque, ipsa, adipisci quisquam ullam deserunt accusantium illo iste exercitationem nemo voluptates asperiores.</p>
-                <p>
-                    <a class="btn btn-default btn-lg" href="#">Call to Action &raquo;</a>
-                </p>
-            </div>
-            <div class="col-sm-4">
-                <h2>Contact Us</h2>
-                <address>
-                    <strong>Start Bootstrap</strong>
-                    <br>3481 Melrose Place
-                    <br>Beverly Hills, CA 90210
-                    <br>
-                </address>
-                <address>
-                    <abbr title="Phone">P:</abbr>(123) 456-7890
-                    <br>
-                    <abbr title="Email">E:</abbr> <a href="mailto:#">name@example.com</a>
-                </address>
-            </div>
-        </div>
--->
-        <!-- /.row -->
-
-<!--
-        <hr>
-
-        <div class="row">
-            <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
-                <h2>Marketing Box #1</h2>
-                <p>These marketing boxes are a great place to put some information. These can contain summaries of what the company does, promotional information, or anything else that is relevant to the company. These will usually be below-the-fold.</p>
-            </div>
-            <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
-                <h2>Marketing Box #2</h2>
-                <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-            </div>
-            <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
-                <h2>Marketing Box #3</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-            </div>
-        </div>
--->
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Sorted Gaming 2015</p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </footer>
-
     </div>
-    <!-- /.container -->
+    <div class="row">
+        <div class="col-sm-6">
+            <canvas id="canvas512" height="512" width="512"></canvas>
+        </div>
+        <div class="col-sm-4">
+            <canvas id="canvas256" height="256" width="256"></canvas>
+        </div>
+        <div class="col-sm-2">
+            <canvas id="canvas128" height="128" width="128"></canvas>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="signature-container" class="row">
+                <div class="col-sm-12">
+                    <canvas id="canvasSig1" height="128" width="600"></canvas>
+                </div>
+            </div>
+            <div id="signature-container" class="row">
+                <div class="col-sm-12">
+                    <canvas id="canvasSig2" height="165" width="800"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- jQuery -->
-    <!--<script src="Static/js/jquery.js"></script>-->
-    <script src="Static/js/jquery.min.js"></script>
+    <!--
+    <div class="row">
+    <div class="col-sm-8">
+    <h2>What We Do</h2>
+    <p>Introduce the visitor to the business using clear, informative text. Use well-targeted keywords within your sentences to make sure search engines can find the business.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et molestiae similique eligendi reiciendis sunt distinctio odit? Quia, neque, ipsa, adipisci quisquam ullam deserunt accusantium illo iste exercitationem nemo voluptates asperiores.</p>
+    <p>
+    <a class="btn btn-default btn-lg" href="#">Call to Action &raquo;</a>
+</p>
+</div>
+<div class="col-sm-4">
+<h2>Contact Us</h2>
+<address>
+<strong>Start Bootstrap</strong>
+<br>3481 Melrose Place
+<br>Beverly Hills, CA 90210
+<br>
+</address>
+<address>
+<abbr title="Phone">P:</abbr>(123) 456-7890
+<br>
+<abbr title="Email">E:</abbr> <a href="mailto:#">name@example.com</a>
+</address>
+</div>
+</div>
+-->
+<!-- /.row -->
 
-    <!-- Bootstrap Core JavaScript -->
-    <!--<script src="Static/js/bootstrap.min.js"></script>-->
-    <script src="Static/js/bootstrap.min.js"></script>
+<!--
+<hr>
 
-    <!-- JSZip -->
-    <script src="Static/js/jszip.min.js"></script>
+<div class="row">
+<div class="col-sm-4">
+<img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
+<h2>Marketing Box #1</h2>
+<p>These marketing boxes are a great place to put some information. These can contain summaries of what the company does, promotional information, or anything else that is relevant to the company. These will usually be below-the-fold.</p>
+</div>
+<div class="col-sm-4">
+<img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
+<h2>Marketing Box #2</h2>
+<p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+</div>
+<div class="col-sm-4">
+<img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
+<h2>Marketing Box #3</h2>
+<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+</div>
+</div>
+-->
+<!-- /.row -->
 
-    <script>
-        var avatarList = [];
-        var signatureList = [];
-        var downloadList = [];
+<hr>
 
-        $(function() {
-            // Check QueryString for Query Parameter
-            var qsIGN = getQueryString('ign');
+<!-- Footer -->
+<footer>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>Copyright &copy; Sorted Gaming 2015</p>
+        </div>
+    </div>
+    <!-- /.row -->
+</footer>
 
-            if(qsIGN) {
-                $('#txtUsername').val(qsIGN);
+</div>
+<!-- /.container -->
 
-                var xOffset = $("#txtXOffset").val()*1;
-                var yOffset = $("#txtYOffset").val()*1;
-                var fontSize = $("#txtFontSize").val()*1;
+<!-- jQuery -->
+<!--<script src="Static/js/jquery.js"></script>-->
+<script src="Static/js/jquery.min.js"></script>
 
-                renderAvatar("canvas512", "Static/img/Avatar_512_bg_dark_square.png", 45);
-                renderAvatar("canvas256", "Static/img/Avatar_256_bg_dark_square.png", 22);
-                renderAvatar("canvas128", "Static/img/Avatar_128_bg_dark_square.png", 11);
+<!-- Bootstrap Core JavaScript -->
+<!--<script src="Static/js/bootstrap.min.js"></script>-->
+<script src="Static/js/bootstrap.min.js"></script>
 
-                renderSignature("canvasSig1", "Static/img/Signature_600x128_bg_black.png", 320, 74, 22);
-                renderSignature("canvasSig2", "Static/img/Signature_800x165_bg_black.png", 400, 128, 18);
-            }
+<!-- JSZip -->
+<script src="Static/js/jszip.min.js"></script>
 
-            // $("#btnGenerate").click(function(event){
-            //
-            //     event.preventDefault();
-            //
-            //     renderAvatar("canvas512", "Static/img/Avatar_512_bg_dark_square.png", 45);
-            //     renderAvatar("canvas256", "Static/img/Avatar_256_bg_dark_square.png", 22);
-            //     renderAvatar("canvas128", "Static/img/Avatar_128_bg_dark_square.png", 11);
-            //     renderAvatar("canvas64", "Static/img/Avatar_64_bg_dark_square.png", 4, 5);
-            //
-            //     renderSignature("canvasSig1", "Static/img/Signature_600x128_bg_black.png", 320, 74, 22);
-            //     renderSignature("canvasSig2", "Static/img/Signature_800x165_bg_black.png", 400, 128, 18);
-            // });
+<script>
+var avatarList = [];
+var signatureList = [];
+var downloadList = [];
 
-            $("#txtUsername, #txtXOffset, #txtYOffset, #txtFontSize").keyup(function(event){
-                event.preventDefault();
+$(function() {
+    // Check QueryString for Query Parameter
+    var qsIGN = getQueryString('ign');
 
-                var xOffset = $("#txtXOffset").val()*1;
-                var yOffset = $("#txtYOffset").val()*1;
-                var fontSize = $("#txtFontSize").val()*1;
+    if(qsIGN) {
+        $('#txtUsername').val(qsIGN);
 
-                renderAvatar("canvas512", "Static/img/Avatar_512_bg_dark_square.png", 45);
-                renderAvatar("canvas256", "Static/img/Avatar_256_bg_dark_square.png", 22);
-                renderAvatar("canvas128", "Static/img/Avatar_128_bg_dark_square.png", 11);
+        var xOffset = $("#txtXOffset").val()*1;
+        var yOffset = $("#txtYOffset").val()*1;
+        var fontSize = $("#txtFontSize").val()*1;
 
-                renderSignature("canvasSig1", "Static/img/Signature_600x128_bg_black.png", 320, 74, 22);
-                renderSignature("canvasSig2", "Static/img/Signature_800x165_bg_black.png", 400, 128, 18);
-            });
+        renderAvatar("canvas512", "Static/img/Avatar_512_bg_dark_square.png", 45);
+        renderAvatar("canvas256", "Static/img/Avatar_256_bg_dark_square.png", 22);
+        renderAvatar("canvas128", "Static/img/Avatar_128_bg_dark_square.png", 11);
 
-            $("#btnDownload").click(function(event) {
-                event.preventDefault();
-                download();
-            });
-        });
+        renderSignature("canvasSig1", "Static/img/Signature_600x128_bg_black.png", 320, 74, 22);
+        renderSignature("canvasSig2", "Static/img/Signature_800x165_bg_black.png", 400, 128, 18);
+    }
 
-        function renderAvatar(id, bgImgUrl, fontSize){
-            var canvas = document.getElementById(id);
-            var context = canvas.getContext("2d");
-            var x = canvas.width;
-            var y = canvas.height;
-            var yOffset = y - (y/6);
-            //var maxWidth = x - (x/8);
-            var maxWidth = x - (x*0.05);
-            drawScreen(canvas, context, x, y, bgImgUrl, 0, yOffset, fontSize, maxWidth);
+    // $("#btnGenerate").click(function(event){
+    //
+    //     event.preventDefault();
+    //
+    //     renderAvatar("canvas512", "Static/img/Avatar_512_bg_dark_square.png", 45);
+    //     renderAvatar("canvas256", "Static/img/Avatar_256_bg_dark_square.png", 22);
+    //     renderAvatar("canvas128", "Static/img/Avatar_128_bg_dark_square.png", 11);
+    //     renderAvatar("canvas64", "Static/img/Avatar_64_bg_dark_square.png", 4, 5);
+    //
+    //     renderSignature("canvasSig1", "Static/img/Signature_600x128_bg_black.png", 320, 74, 22);
+    //     renderSignature("canvasSig2", "Static/img/Signature_800x165_bg_black.png", 400, 128, 18);
+    // });
 
-            avatarList.push({ 'id': id, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
+    $("#btnGenerateLink").click(function(event){
+        var username = $("#txtUsername").val();
+        if (username) {
+            $("#txtShareLink").val(window.location.protocol + "//" + window.location.hostname + "/" + '?ign=' + encodeURIComponent(username));
         }
+    });
 
-        function renderSignature(id, bgImgUrl, xOffset, yOffset, fontSize){
-            var canvas = document.getElementById(id);
-            var context = canvas.getContext("2d");
+    $("#txtShareLink").on("click", function () {
+       $(this).select();
+    });
 
-            var text = $("#txtUsername").val();
-            var textMetrics = context.measureText(text);
+    $("#txtUsername, #txtXOffset, #txtYOffset, #txtFontSize").keyup(function(event){
+        event.preventDefault();
 
-            var x = canvas.width + (xOffset);
-            var y = canvas.height;
-            var maxWidth = (canvas.width/2) - (canvas.width*0.05);
+        var xOffset = $("#txtXOffset").val()*1;
+        var yOffset = $("#txtYOffset").val()*1;
+        var fontSize = $("#txtFontSize").val()*1;
 
-            drawScreen(canvas, context, x, y, bgImgUrl, xOffset, yOffset, fontSize, maxWidth);
+        renderAvatar("canvas512", "Static/img/Avatar_512_bg_dark_square.png", 45);
+        renderAvatar("canvas256", "Static/img/Avatar_256_bg_dark_square.png", 22);
+        renderAvatar("canvas128", "Static/img/Avatar_128_bg_dark_square.png", 11);
 
-            signatureList.push({ 'id': id, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
-        }
+        renderSignature("canvasSig1", "Static/img/Signature_600x128_bg_black.png", 320, 74, 22);
+        renderSignature("canvasSig2", "Static/img/Signature_800x165_bg_black.png", 400, 128, 18);
+    });
 
-        function drawScreen(canvas, context, x, y, bgImgUrl, xOffset, yOffset, fontSize, maxWidth) {
-            var backgroundImage = new Image();
-            //backgroundImage.setAttribute('crossOrigin', 'anonymous');
-            backgroundImage.crossOrigin = 'Anonymous';
-            backgroundImage.onload = function(){
-                context.drawImage(backgroundImage, 0, 0);
-                downloadList.push({ 'src': bgImgUrl, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
-                drawText(context, x, y, xOffset, yOffset, fontSize, maxWidth);
-                context.restore();
-            };
-            backgroundImage.src = bgImgUrl;
-        }
+    $("#btnDownload").click(function(event) {
+        event.preventDefault();
+        download();
+    });
+});
 
-        function drawText(context, x, y, xOffset, yOffset, fontSize, maxWidth) {
-            // text properties
-            var text = $("#txtUsername").val();
-            var textMetrics = context.measureText(text);
+function renderAvatar(id, bgImgUrl, fontSize){
+    var canvas = document.getElementById(id);
+    var context = canvas.getContext("2d");
+    var x = canvas.width;
+    var y = canvas.height;
+    var yOffset = y - (y/6);
+    //var maxWidth = x - (x/8);
+    var maxWidth = x - (x*0.05);
+    drawScreen(canvas, context, x, y, bgImgUrl, 0, yOffset, fontSize, maxWidth);
 
-            var fontOffset = yOffset + (fontSize*1.3);
+    avatarList.push({ 'id': id, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
+}
 
-            // gradient properties
-            var gradient = context.createLinearGradient(0, yOffset, 0, fontOffset);
+function renderSignature(id, bgImgUrl, xOffset, yOffset, fontSize){
+    var canvas = document.getElementById(id);
+    var context = canvas.getContext("2d");
 
-            // gradient settings
-            gradient.addColorStop("0","#5C0000"); //#5C0000
-            gradient.addColorStop("0.5","#980000"); //#980000
-            gradient.addColorStop("1.0","#5C0000"); //#5C0000
+    var text = $("#txtUsername").val();
+    var textMetrics = context.measureText(text);
 
-            //context.globalCompositeOperation='source-atop';
+    var x = canvas.width + (xOffset);
+    var y = canvas.height;
+    var maxWidth = (canvas.width/2) - (canvas.width*0.05);
 
-            // Fill with gradient
-            context.fillStyle = gradient;
-            //context.fillStyle = "#980000";
-            // end gradient
+    drawScreen(canvas, context, x, y, bgImgUrl, xOffset, yOffset, fontSize, maxWidth);
 
-            // font settings
-            context.font = fontSize + "px Good Times";
-            context.textBaseline = 'top';
-            context.textAlign = 'center';
+    signatureList.push({ 'id': id, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
+}
 
-            //var xPosition = (x/2) - (textMetrics.width/2);
+function drawScreen(canvas, context, x, y, bgImgUrl, xOffset, yOffset, fontSize, maxWidth) {
+    var backgroundImage = new Image();
+    //backgroundImage.setAttribute('crossOrigin', 'anonymous');
+    backgroundImage.crossOrigin = 'Anonymous';
+    backgroundImage.onload = function(){
+        context.drawImage(backgroundImage, 0, 0);
+        downloadList.push({ 'src': bgImgUrl, 'data': canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "")});
+        drawText(context, x, y, xOffset, yOffset, fontSize, maxWidth);
+        context.restore();
+    };
+    backgroundImage.src = bgImgUrl;
+}
 
-            context.fillText(text, x/2, yOffset, maxWidth);
-        }
+function drawText(context, x, y, xOffset, yOffset, fontSize, maxWidth) {
+    // text properties
+    var text = $("#txtUsername").val();
+    var textMetrics = context.measureText(text);
 
-        function download(){
-            var zip = new JSZip();
+    var fontOffset = yOffset + (fontSize*1.3);
 
-            var canvas512 = document.getElementById('canvas512').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
-            var canvas256 = document.getElementById('canvas256').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
-            var canvas128 = document.getElementById('canvas128').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
-            var canvasSig1 = document.getElementById('canvasSig1').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
-            var canvasSig2 = document.getElementById('canvasSig2').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+    // gradient properties
+    var gradient = context.createLinearGradient(0, yOffset, 0, fontOffset);
 
-            var dirAvatars = zip.folder("avatars");
-            dirAvatars.file("128.png", canvas512, {base64: true});
-            dirAvatars.file("256.png", canvas256, {base64: true});
-            dirAvatars.file("512.png", canvas128, {base64: true});
+    // gradient settings
+    gradient.addColorStop("0","#5C0000"); //#5C0000
+    gradient.addColorStop("0.5","#980000"); //#980000
+    gradient.addColorStop("1.0","#5C0000"); //#5C0000
 
-            var dirSignatures = zip.folder("signatures");
-            dirSignatures.file("sig1.png", canvasSig1, {base64: true});
-            dirSignatures.file("sig2.png", canvasSig2, {base64: true});
+    //context.globalCompositeOperation='source-atop';
 
-            var content = zip.generate({type:"base64"});
-            location.href="data:application/zip;base64,"+content;
+    // Fill with gradient
+    context.fillStyle = gradient;
+    //context.fillStyle = "#980000";
+    // end gradient
 
-            var content = zip.generate({type:"blob"});
-            saveAs(content, "Sorted_Profile_Images.zip");
-        }
+    // font settings
+    context.font = fontSize + "px Good Times";
+    context.textBaseline = 'top';
+    context.textAlign = 'center';
 
-        function getQueryString(name) {
-            var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-            return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-        }
-    </script>
+    //var xPosition = (x/2) - (textMetrics.width/2);
+
+    context.fillText(text, x/2, yOffset, maxWidth);
+}
+
+function download(){
+    var zip = new JSZip();
+
+    var canvas512 = document.getElementById('canvas512').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+    var canvas256 = document.getElementById('canvas256').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+    var canvas128 = document.getElementById('canvas128').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+    var canvasSig1 = document.getElementById('canvasSig1').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+    var canvasSig2 = document.getElementById('canvasSig2').toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
+
+    var dirAvatars = zip.folder("avatars");
+    dirAvatars.file("128.png", canvas512, {base64: true});
+    dirAvatars.file("256.png", canvas256, {base64: true});
+    dirAvatars.file("512.png", canvas128, {base64: true});
+
+    var dirSignatures = zip.folder("signatures");
+    dirSignatures.file("sig1.png", canvasSig1, {base64: true});
+    dirSignatures.file("sig2.png", canvasSig2, {base64: true});
+
+    var content = zip.generate({type:"base64"});
+    location.href="data:application/zip;base64,"+content;
+
+    var content = zip.generate({type:"blob"});
+    saveAs(content, "Sorted_Profile_Images.zip");
+}
+
+function getQueryString(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+</script>
 
 </body>
 
